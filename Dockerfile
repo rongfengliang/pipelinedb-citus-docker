@@ -2,6 +2,7 @@ FROM postgres:10
 LABEL author="dalongrong"
 LABEL email="1141591465@qq.com"
 ARG VERSION=7.5.1
+ENV CITUS_VERSION ${VERSION}.citus-1
 COPY docker-entrypoint-initdb.d/install_pipelinedb.sh /docker-entrypoint-initdb.d/
 COPY docker-entrypoint-initdb.d/reenable_auth.sh /docker-entrypoint-initdb.d/
 COPY docker-entrypoint-initdb.d/001-create-citus-extension.sql  /docker-entrypoint-initdb.d/
