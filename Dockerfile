@@ -16,7 +16,7 @@ RUN  curl -s https://install.citusdata.com/community/deb.sh | bash \
     && apt-get purge -y --auto-remove curl \
     && rm -rf /var/lib/apt/lists/*
 RUN echo "shared_preload_libraries = 'pipelinedb' " >> /usr/share/postgresql/postgresql.conf.sample
-RUN echo "max_worker_processes = 'pipelinedb' ">> /usr/share/postgresql/postgresql.conf.sample
+RUN echo "max_worker_processes = '128' ">> /usr/share/postgresql/postgresql.conf.sample
 RUN echo "shared_preload_libraries='citus'" >> /usr/share/postgresql/postgresql.conf.sample
 COPY pg_healthcheck /
 HEALTHCHECK --interval=4s --start-period=6s CMD ./pg_healthcheck
