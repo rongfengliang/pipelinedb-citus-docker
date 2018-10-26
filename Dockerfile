@@ -13,8 +13,8 @@ RUN  curl -s https://install.citusdata.com/community/deb.sh | bash \
                           postgresql-$PG_MAJOR-hll=2.10.2.citus-1 \
                           postgresql-$PG_MAJOR-topn=2.0.2 \
     && apt-get purge -y --auto-remove curl \
+    && apt-get install -y pipelinedb-postgresql-10 \
     && rm -rf /var/lib/apt/lists/*
-RUN  apt-get install -yqq pipelinedb-postgresql-10
 RUN echo "shared_preload_libraries = 'pipelinedb' " >> /usr/share/postgresql/postgresql.conf.sample
 RUN echo "max_worker_processes = 'pipelinedb' ">> /usr/share/postgresql/postgresql.conf.sample
 RUN echo "shared_preload_libraries='citus'" >> /usr/share/postgresql/postgresql.conf.sample
